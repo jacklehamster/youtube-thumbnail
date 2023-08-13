@@ -1,7 +1,6 @@
   let timeout;
   function commitChange(id) {
     hasImage = false;
-    [...document.getElementsByClassName("dot-pulse")].forEach(pulse => pulse.classList.add("hidden"));
     updateBoxes((box, index) => updateBox(box, id, TYPES[index]));
     document.getElementById("iframe").src = `https://www.youtube.com/embed/${id}`;
   }
@@ -93,6 +92,7 @@
       } else {
         removeHistory(id);
       }
+      [...document.getElementsByClassName("dot-pulse")].forEach(pulse => pulse.classList.add("hidden"));      
     }
   }
 
