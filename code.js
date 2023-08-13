@@ -46,7 +46,7 @@ function refresh(hist, id, removal) {
     if (!img) {
       img = histDiv.appendChild(document.createElement("img"));
       img.id = imgId;
-      img.src = `https://img.youtube.com/vi/${yid}/default.jpg`;
+      img.src = `https://img.youtube.com/vi/${yid}/default.jpg?${Date.now}`;
       img.classList.add("mini-image");
       img.addEventListener("click", () => {
           commitChange(yid);
@@ -100,7 +100,7 @@ function updateBox(box, id, type) {
   // box.textContent = type;
   box.setAttribute("title", type);
   box.setAttribute("disabled", true);
-  const imageUrl = `https://img.youtube.com/vi/${id}/${type}default.jpg`;
+  const imageUrl = `https://img.youtube.com/vi/${id}/${type}default.jpg?${Date.now}`;
   const image = new Image();
   image.src = imageUrl;
   pendingLoad(id, type);
