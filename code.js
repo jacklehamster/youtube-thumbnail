@@ -113,6 +113,7 @@ function updateBox(box, id, type) {
     if (image.naturalWidth !== 120 || image.naturalHeight !== 90) {
       hasImage = true;
     }
+    document.getElementById(`size-${type}`).textContent = `${image.naturalWidth}x${image.naturalHeight}`;
     completedLoad(id, type);
   });
 }
