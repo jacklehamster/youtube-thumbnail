@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="dot-pulse.css">
+
+
+
 <style>
   body {
     display: flex;
@@ -8,9 +12,10 @@
     align-items: center;
     height: 100vh;
     margin: 0;
+    flex-direction: column;
   }
   
-  .textbox-container {
+  .container {
     text-align: center;
   }
   
@@ -20,11 +25,100 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+
+  .image-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+
+  .image-box {
+    width: 150px;
+    height: 112px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #000;
+    border: 2px solid red;
+  }
+  spacer {
+    height: 20px;
+  }
+  .hidden {
+    display: none;
+  }
+  .mini-image {
+    width: 40px;
+    height: 30px;
+    position: absolute;
+    transition-property: all;
+    transition-duration: .2s;
+  }
+  .mini-image.clickable {
+    opacity: .6;
+    cursor: pointer;
+  }
+
+
 </style>
+<script src="code.js">
+</script>
 </head>
 <body>
-  <div class="textbox-container">
-    <input type="text" class="textbox" placeholder="Enter text here">
+  <spacer></spacer>
+  <div id="hist"></div>
+  <spacer></spacer>
+  <spacer></spacer>
+  <div class="container">
+    <div class="image-container">
+      <a class="image-box" target="_blank">
+        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
+          Default
+        </div>
+      </a>
+      <a class="image-box" target="_blank">
+        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
+          HQ
+        </div>
+      </a>
+      <a class="image-box" target="_blank">
+        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
+          MQ
+        </div>
+      </a>
+      <a class="image-box" target="_blank">
+        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
+          SD
+        </div>
+      </a>
+      <a class="image-box" target="_blank">
+        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
+          MaxRes
+        </div>
+      </a>
+    </div>
   </div>
+  <spacer></spacer>
+  <div style="height: 15px">
+    <div class="dot-pulse hidden"></div>
+  </div>
+  <spacer></spacer>
+  <div class="container">
+    <div>
+      <label for="textbox">Enter your YouTube video id or URL<br>(ex: <a target="_blank" href="https://www.youtube.com/watch?v=gXKQivjYZOs">https://www.youtube.com/watch?v=gXKQivjYZOs</a>)</label>
+    </div>
+    <div>
+      <input style="margin-top: 5px" id="textbox" type="text" onkeyup="onChange(this.value)" class="textbox" placeholder="gXKQivjYZOs">
+    </div>
+  </div>
+
+  <spacer></spacer>
+  <spacer></spacer>
+  <spacer></spacer>
+  <spacer></spacer>
+
+  <iframe id="iframe" width="250" height="150" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 </body>
 </html>
