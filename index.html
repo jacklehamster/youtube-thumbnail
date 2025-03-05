@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="dot-pulse.css">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Youtube Thumbnail extractor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="dot-pulse.css" />
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Youtube Thumbnail downloader" />
@@ -13,7 +16,10 @@
       property="og:image"
       content="https://jacklehamster.github.io/youtube-thumbnail/screencap-small.png"
     />
-    <meta property="og:url" content="https://jacklehamster.github.io/youtube-thumbnail/" />
+    <meta
+      property="og:url"
+      content="https://jacklehamster.github.io/youtube-thumbnail/"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="YouTube Thumbnail downloader" />
 
@@ -58,144 +64,165 @@
       }
     </script>
 
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+      }
 
-  
+      .container {
+        text-align: center;
+      }
 
+      .textbox {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
 
-<style>
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    flex-direction: column;
-  }
-  
-  .container {
-    text-align: center;
-  }
-  
-  .textbox {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+      .image-container {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+      }
 
-  .image-container {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-  }
-
-  .image-box {
-    width: 150px;
-    height: 112px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #000;
-    border: 2px solid red;
-  }
-  spacer {
-    height: 20px;
-  }
-  .hidden {
-    display: none;
-  }
-  .mini-image {
-    width: 40px;
-    height: 30px;
-    position: absolute;
-    transition-property: all;
-    transition-duration: .2s;
-  }
-  .mini-image.clickable {
-    opacity: .6;
-    cursor: pointer;
-  }
-
-
-</style>
-<script src="code.js">
-</script>
-</head>
-<body>
-  <h3>
-    YouTube Video Thumbnail Extraction Tool
-  </h3>
-  <h4>
-    Extract thumbnails from a YouTube video.
-  </h4>
-  <spacer></spacer>
-  <div id="hist"></div>
-  <spacer></spacer>
-  <spacer></spacer>
-  <div class="container">
-    <div class="image-container">
-      <a class="image-box" target="_blank">
-        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
-          Default <span id="-size"></span>
-        </div>
-      </a>
-      <a class="image-box" target="_blank">
-        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
-          HQ <span id="hq-size"></span>
-        </div>
-      </a>
-      <a class="image-box" target="_blank">
-        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
-          MQ <span id="mq-size"></span>
-        </div>
-      </a>
-      <a class="image-box" target="_blank">
-        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
-          SD <span id="sd-size"></span>
-        </div>
-      </a>
-      <a class="image-box" target="_blank">
-        <div style="width: 100%; background-color: rgba(255, 255, 155, .9)">
-          MaxRes <span id="maxres-size"></span>
-        </div>
-      </a>
+      .image-box {
+        width: 150px;
+        height: 112px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #000;
+        border: 2px solid red;
+      }
+      .spacer {
+        height: 20px;
+      }
+      .hidden {
+        display: none;
+      }
+      .mini-image {
+        width: 40px;
+        height: 30px;
+        position: absolute;
+        transition-property: all;
+        transition-duration: 0.2s;
+      }
+      .mini-image.clickable {
+        opacity: 0.6;
+        cursor: pointer;
+      }
+    </style>
+    <script src="code.js"></script>
+  </head>
+  <body>
+    <h3>YouTube Video Thumbnail Extraction Tool</h3>
+    <h4>Extract thumbnails from a YouTube video.</h4>
+    <div class="spacer"></div>
+    <div id="hist"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="container">
+      <div class="image-container">
+        <a class="image-box" target="_blank">
+          <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
+            Default <span id="-size"></span>
+          </div>
+        </a>
+        <a class="image-box" target="_blank">
+          <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
+            HQ <span id="hq-size"></span>
+          </div>
+        </a>
+        <a class="image-box" target="_blank">
+          <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
+            MQ <span id="mq-size"></span>
+          </div>
+        </a>
+        <a class="image-box" target="_blank">
+          <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
+            SD <span id="sd-size"></span>
+          </div>
+        </a>
+        <a class="image-box" target="_blank">
+          <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
+            MaxRes <span id="maxres-size"></span>
+          </div>
+        </a>
+      </div>
     </div>
-  </div>
-  <spacer></spacer>
-  <div style="height: 15px">
-    <div class="dot-pulse hidden"></div>
-  </div>
-  <spacer></spacer>
-  <div class="container">
-    <div>
-      <label for="textbox">Enter your YouTube video id or URL<br>(ex: <a target="_blank" href="https://www.youtube.com/watch?v=gXKQivjYZOs">https://www.youtube.com/watch?v=gXKQivjYZOs</a>)</label>
+    <div class="spacer"></div>
+    <div style="height: 15px">
+      <div class="dot-pulse hidden"></div>
     </div>
-    <div>
-      <input style="margin-top: 5px" id="textbox" type="text" onkeyup="onChange(this.value)" class="textbox" placeholder="gXKQivjYZOs">
+    <div class="spacer"></div>
+
+    <div class="spacer"></div>
+    <div class="container">
+      <div>
+        <label for="textbox"
+          >Enter your YouTube video id or URL<br />(ex:
+          <a
+            rel="noopener"
+            target="_blank"
+            href="https://www.youtube.com/watch?v=gXKQivjYZOs"
+            >https://www.youtube.com/watch?v=gXKQivjYZOs</a
+          >)</label
+        >
+      </div>
+      <div>
+        <input
+          style="margin-top: 5px"
+          id="textbox"
+          type="text"
+          onkeyup="onChange(this.value)"
+          class="textbox"
+          placeholder="gXKQivjYZOs"
+        />
+      </div>
     </div>
-  </div>
 
-  <spacer></spacer>
-  <spacer></spacer>
-  <spacer></spacer>
-  <spacer></spacer>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
 
-  <iframe id="iframe" width="250" height="150" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe
+      id="iframe"
+      width="250"
+      height="150"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
 
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-8JNB16YR8R"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
+      gtag("config", "G-8JNB16YR8R");
+    </script>
 
-
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8JNB16YR8R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8JNB16YR8R');
-</script>
-
-  Source code on Github: <a target="_blank" href="https://github.com/jacklehamster/youtube-thumbnail">https://github.com/jacklehamster/youtube-thumbnail</a>
-</body>  
+    Source code on Github:
+    <a
+      rel="noopener"
+      target="_blank"
+      href="https://github.com/jacklehamster/youtube-thumbnail"
+      >https://github.com/jacklehamster/youtube-thumbnail</a
+    >
+  </body>
 </html>
