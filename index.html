@@ -97,8 +97,14 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        background-color: #000;
-        border: 2px solid red;
+        background-color: #555;
+        border: 2px solid blue;
+      }
+      .image-box.thumbnail {
+        min-width: 250px;
+        min-height: 180px;
+        border: 0px;
+        background-color: #fff;
       }
       .spacer {
         height: 20px;
@@ -117,57 +123,64 @@
         opacity: 0.6;
         cursor: pointer;
       }
+      #hist {
+        min-height: 50px;
+      }
     </style>
     <script src="code.js"></script>
   </head>
   <body>
     <h3>YouTube Video Thumbnail Extraction Tool</h3>
-    <h4>Extract thumbnails from a YouTube video.</h4>
+    <div>Extract thumbnails from a YouTube video.</div>
+    <a class="image-box thumbnail" type="maxres" target="_blank">
+      <div
+        style="width: 100%; background-color: rgba(255, 255, 155, 0.9)"
+      ></div>
+    </a>
+
     <div class="spacer"></div>
     <div id="hist"></div>
     <div class="spacer"></div>
     <div class="spacer"></div>
     <div class="container">
       <div class="image-container">
-        <a class="image-box" target="_blank">
+        <a class="image-box" type="" target="_blank">
           <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
             Default <span id="-size"></span>
           </div>
         </a>
-        <a class="image-box" target="_blank">
-          <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
-            HQ <span id="hq-size"></span>
-          </div>
-        </a>
-        <a class="image-box" target="_blank">
+        <a class="image-box" type="mq" target="_blank">
           <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
             MQ <span id="mq-size"></span>
           </div>
         </a>
-        <a class="image-box" target="_blank">
+        <a class="image-box" type="hq" target="_blank">
+          <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
+            HQ <span id="hq-size"></span>
+          </div>
+        </a>
+        <a class="image-box" type="sd" target="_blank">
           <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
             SD <span id="sd-size"></span>
           </div>
         </a>
-        <a class="image-box" target="_blank">
+        <a class="image-box" type="maxres" target="_blank">
           <div style="width: 100%; background-color: rgba(255, 255, 155, 0.9)">
             MaxRes <span id="maxres-size"></span>
           </div>
         </a>
       </div>
     </div>
-    <div class="spacer"></div>
     <div style="height: 15px">
       <div class="dot-pulse hidden"></div>
     </div>
-    <div class="spacer"></div>
 
-    <div class="spacer"></div>
     <div class="container">
       <div>
         <label for="textbox"
           >Enter your YouTube video id or URL<br />(ex:
           <a
+            id="example"
             rel="noopener"
             target="_blank"
             href="https://www.youtube.com/watch?v=gXKQivjYZOs"
@@ -186,6 +199,20 @@
         />
       </div>
     </div>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get("id");
+      if (id) {
+        document.getElementById("textbox").value = id;
+        document.getElementById(
+          "example"
+        ).href = `https://www.youtube.com/watch?v=${id}`;
+        document.getElementById(
+          "example"
+        ).innerText = `https://www.youtube.com/watch?v=${id}`;
+        onChange(id, true);
+      }
+    </script>
 
     <div class="spacer"></div>
     <div class="spacer"></div>
