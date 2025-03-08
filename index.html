@@ -199,20 +199,6 @@
         />
       </div>
     </div>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get("id");
-      if (id) {
-        document.getElementById("textbox").value = id;
-        document.getElementById(
-          "example"
-        ).href = `https://www.youtube.com/watch?v=${id}`;
-        document.getElementById(
-          "example"
-        ).innerText = `https://www.youtube.com/watch?v=${id}`;
-        onChange(id, true);
-      }
-    </script>
 
     <div class="spacer"></div>
     <div class="spacer"></div>

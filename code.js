@@ -1,13 +1,16 @@
 const now = Date.now();
 
 let timeout;
-function commitChange(id) {
+function commitChange(id, firstLoad) {
   hasImage = false;
   [...document.getElementsByClassName("dot-pulse")].forEach((pulse) =>
     pulse.classList.add("hidden")
   );
-  updateBoxes((box, index) => updateBox(box, id, box.getAttribute("type")));
+  updateBoxes((box) => updateBox(box, id, box.getAttribute("type")));
   document.getElementById("iframe").src = `https://www.youtube.com/embed/${id}`;
+  if (!firstLoad) {
+    history.pushState({}, "", `?v=${id}`);
+  }
 }
 
 const TYPES = ["", "hq", "mq", "sd", "maxres"];
@@ -135,6 +138,8 @@ function updateBoxes(callback) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  commitChange(getHistory()[0]?.[0] ?? "gXKQivjYZOs");
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id");
+  commitChange(id ?? getHistory()[0]?.[0] ?? "gXKQivjYZOs", true);
   document.querySelector("#textbox").focus();
 });
