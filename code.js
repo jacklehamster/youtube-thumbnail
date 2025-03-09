@@ -1,5 +1,6 @@
 const now = Date.now();
 
+let hasImage = false;
 let timeout;
 function commitChange(id, firstLoad) {
   hasImage = false;
@@ -13,10 +14,9 @@ function commitChange(id, firstLoad) {
   }
 }
 
-const TYPES = ["", "hq", "mq", "sd", "maxres"];
-
 function onChange(value, immediate) {
-  const id = value.match(/(https:\/\/www\.youtube\.com\/watch\?v=)?(.+)/)?.[2];
+  // const id = value.match(/(https:\/\/www\.youtube\.com\/watch\?v=)?(.+)/)?.[2];
+  const id = getYouTubeID(value);
   clearTimeout(timeout);
   if (id) {
     timeout = setTimeout(commitChange, immediate ? 10 : 1000, id);
