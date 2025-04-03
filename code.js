@@ -16,7 +16,7 @@ function commitChange(id, firstLoad) {
 
 function onChange(value, immediate) {
   // const id = value.match(/(https:\/\/www\.youtube\.com\/watch\?v=)?(.+)/)?.[2];
-  const id = getYouTubeID(value);
+  const id = getYouTubeID(value) ?? value;
   clearTimeout(timeout);
   if (id) {
     timeout = setTimeout(commitChange, immediate ? 10 : 1000, id);
